@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>$(MSBuildProjectName.Replace("-dev", ""))</RootNamespace>
+    <AssemblyName>$(MSBuildProjectName.Replace("-dev", ""))</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\MDD4All.SpecIF.DataFactory\src\MDD4All.SpecIF.DataFactory\MDD4All.SpecIF.DataFactory-dev.csproj" />
+    <ProjectReference Include="..\..\..\MDD4All.SpecIF.DataModels\src\MDD4All.SpecIF.DataModels\MDD4All.SpecIF.DataModels-dev.csproj" />
+    <ProjectReference Include="..\..\..\MDD4All.SpecIF.DataProvider.Contracts\src\MDD4All.SpecIF.DataProvider.Contracts\MDD4All.SpecIF.DataProvider.Contracts-dev.csproj" />
+    <ProjectReference Include="..\..\..\MDD4All.SpecIF.DataProvider.File\src\MDD4All.SpecIF.DataProvider.File\MDD4All.SpecIF.DataProvider.File-dev.csproj" />
+  </ItemGroup>
+
+</Project>
