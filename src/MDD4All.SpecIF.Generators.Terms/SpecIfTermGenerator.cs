@@ -30,6 +30,8 @@ namespace MDD4All.SpecIF.Generators.Terms
         {
             SpecIF.DataModels.SpecIF result = new SpecIF.DataModels.SpecIF();
 
+            result.ID = "_2332DD43_633D_4DC5_A04C_AB7326456503";
+
             Resource rootResource = SpecIfDataFactory.CreateResource(new Key("RC-Hierarchy", "1.1"), _metadataReader);
 
             rootResource.SetPropertyValue("dcterms:title", "SpecIF Vocabulary", _metadataReader);
@@ -371,7 +373,7 @@ namespace MDD4All.SpecIF.Generators.Terms
                 Resource termDataType = SpecIfDataFactory.CreateResource(new Key("RC-TermDataType", "1.2"), _metadataReader);
 
                 termDataType.ID = "TDT-" + dataType.ID;
-                termDataType.Revision = "1";
+                termDataType.Revision = dataType.Revision;
 
                 // title
                 termDataType.SetPropertyValue(new Key("PC-Name", "1.1"), new Value(dataType.Title));
@@ -460,7 +462,7 @@ namespace MDD4All.SpecIF.Generators.Terms
                     {
                         Resource enumValueTerm = _propertyValueTerms[new Key(enumReference.ID)];
 
-                        Statement containsStatement = SpecIfDataFactory.CreateStatement(new Key("SC-contains", "1.1"),
+                        Statement containsStatement = SpecIfDataFactory.CreateStatement(new Key("SC-contains", "1.2"),
                                                                                             new Key(termDataType.ID, termDataType.Revision),
                                                                                             new Key(enumValueTerm.ID, enumValueTerm.Revision),
                                                                                             _metadataReader);
@@ -485,7 +487,7 @@ namespace MDD4All.SpecIF.Generators.Terms
                                                                               _metadataReader);
 
                 termPropertyClass.ID = "TPC-" + propertyClass.ID;
-                termPropertyClass.Revision = "1";
+                termPropertyClass.Revision = propertyClass.Revision;
 
                 // title
                 termPropertyClass.SetPropertyValue(new Key("PC-Name", "1.1"), new Value(propertyClass.Title));
@@ -543,7 +545,7 @@ namespace MDD4All.SpecIF.Generators.Terms
                                                                               _metadataReader);
 
                 termResourceClass.ID = "TRC-" + resourceClass.ID;
-                termResourceClass.Revision = "1";
+                termResourceClass.Revision = resourceClass.Revision;
 
                 // title
                 termResourceClass.SetPropertyValue(new Key("PC-Name", "1.1"), new Value(resourceClass.Title));
@@ -644,7 +646,7 @@ namespace MDD4All.SpecIF.Generators.Terms
                                                                               _metadataReader);
 
                 termStatementClass.ID = "TSC-" + statementClass.ID;
-                termStatementClass.Revision = "1";
+                termStatementClass.Revision = statementClass.Revision;
 
                 // title
                 termStatementClass.SetPropertyValue(new Key("PC-Name", "1.1"), new Value(statementClass.Title));
@@ -720,9 +722,9 @@ namespace MDD4All.SpecIF.Generators.Terms
                         if (propertyClassTerm != null)
                         {
                             Statement orderedContainsStatement = SpecIfDataFactory.CreateStatement(new Key("SC-orderedContains", "1.2"),
-                                                                                new Key(termStatementClass.ID, termStatementClass.Revision),
-                                                                                new Key(propertyClassTerm.ID, propertyClassTerm.Revision),
-                                                                                _metadataReader);
+                                                                                                   new Key(propertyClassTerm.ID, propertyClassTerm.Revision),
+                                                                                                   new Key(termStatementClass.ID, termStatementClass.Revision),
+                                                                                                   _metadataReader);
 
                             orderedContainsStatement.SetPropertyValue(new Key("PC-Index", "1.2"), new Value(counter.ToString()));
 
@@ -758,8 +760,8 @@ namespace MDD4All.SpecIF.Generators.Terms
                             if (subject != null)
                             {
                                 Statement subjectStatement = SpecIfDataFactory.CreateStatement(new Key("SC-isEligibleAsSubject", "1.2"),
-                                                                                               new Key(termStatementClass.ID, termStatementClass.Revision),
                                                                                                new Key(subject.ID, subject.Revision),
+                                                                                               new Key(termStatementClass.ID, termStatementClass.Revision),
                                                                                                _metadataReader);
 
                                 result.Add(subjectStatement);
@@ -794,8 +796,8 @@ namespace MDD4All.SpecIF.Generators.Terms
                             if (objectTerm != null)
                             {
                                 Statement objectStatement = SpecIfDataFactory.CreateStatement(new Key("SC-isEligibleAsObject", "1.2"),
-                                                                                              new Key(termStatementClass.ID, termStatementClass.Revision),
                                                                                               new Key(objectTerm.ID, objectTerm.Revision),
+                                                                                              new Key(termStatementClass.ID, termStatementClass.Revision),
                                                                                               _metadataReader);
 
                                 result.Add(objectStatement);

@@ -8,16 +8,16 @@ namespace MDD4All.SpecIF.Generators.Terms.Test
     {
         Program()
         {
-            ISpecIfMetadataReader metadataReader = new SpecIfFileMetadataReader(@"d:\SpecIF_Metadata\1.2\");
+            ISpecIfMetadataReader metadataReader = new SpecIfFileMetadataReader(@"c:\test\SpecIF_Metadata\1.2\");
 
             SpecIfTermGenerator specIfTermGenerator = new SpecIfTermGenerator(metadataReader);
 
 
-            string[] rootPaths = { @"d:\work\github\SpecIF-Class-Definitions_dev\" };
+            string[] rootPaths = { @"c:\Users\alto\work\github\SpecIF-Class-Definitions_dev\" };
 
             SpecIF.DataModels.SpecIF result = specIfTermGenerator.GenerateDoaminVocabulary(rootPaths);
 
-            SpecIfFileReaderWriter.SaveSpecIfToFile(result, @"d:\SpecIF_Metadata\1.2\vocabulary.specif");
+            SpecIfFileReaderWriter.SaveSpecIfToFile(result, @"c:\test\SpecIF_Metadata\vocabulary_generated.specif");
         }
 
         static void Main(string[] args)
